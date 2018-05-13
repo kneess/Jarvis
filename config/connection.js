@@ -1,10 +1,11 @@
 var mysql = require("mysql");
 
 var connection = mysql.connect({
-    host: DB_host,
-    user: DB_user,
-    password: DB_password,
-    database: DB_database
+    port: 3306,
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "jarvis_db"
 })
 
 module.exports = connection;
