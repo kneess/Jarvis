@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+		<link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
+		<title>Jarvis</title>
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="../../public/assets/css/style.css"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	</head>
+	<body>
+
+            <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                      <img src="./public/assets/images/Jarvis Logo.JPG" alt="Jarvis Logo" width="250pt">
+                    </div>
+                  </div>
+
+            <div class="container">
+                <div class="row">
+                    <h4 class="user-info">Enter your address:</h4>
+                </div>
+                <div class="row">
+                        <form>
+                            <div class="form-group"> <!-- Street 1 -->
+                                    <label for="street1_id" class="control-label">Street Address:</label>
+                                    <input type="text" class="form-control" id="street1_id" name="street1">
+                            </div>					
+                            <div class="row">
+                                <div class="col-sm-7">    
+                                    <div class="form-group"> <!-- City-->
+                                    <label for="city_id" class="control-label">City:</label>
+                                    <input type="text" class="form-control" id="city_id" name="city">
+                            </div>	
+                            </div>								
+                                <div class="col-sm-2">                     
+                                    <div class="form-group"> <!-- State -->  
+                                    <label for="state_id" class="control-label">State:</label>
+                                    <input type="text" class="form-control" id="state_id" name="ST">      
+                                </div>
+                            </div>
+                                <div class="col-sm-3">       
+                                <div class="form-group"> <!-- Zip Code-->
+                                    <label for="zip_id" class="control-label">Zip Code:</label>
+                                    <input type="text" class="form-control" id="zip_id" name="zip">
+                                </div>	
+                                </div>
+                            </div>
+                        </form>        
+                            
+                </div>
+            <div class="row">
+                    <div class="form-group">
+                            <label for="select-list">Select a procedure to price out:</label>
+                            <select class="form-control" id="select-list">
+                              <option>placeholder 1</option>
+                              <option>placeholder 2</option>
+                              <option>placeholder 3</option>
+                              <option>placeholder 4</option>
+                            </select>
+                            <br>
+                            <button type="button" id="submit" class="btn btn-primary" data-dismiss="modal">Submit</button>
+
+                          </div>
+
+            </div>
+
+            </div>
+
+
+
+	</body>
+</html>
