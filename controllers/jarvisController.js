@@ -1,10 +1,19 @@
 var express = require("express");
 var router = express.Router();
-var burger = require("../models/jarvis.js");
-
-// routes go here
-
+// var db = require("../models");
+var path = require("path");
 
 
+module.exports = function(app) {
 
-module.exports = router;
+    //html routes
+
+    app.get("/", function(req, res) {
+        res.sendFile(path.join(__dirname, "../Jarvis/test.html"));
+        });
+
+
+    //api routes
+
+
+};
