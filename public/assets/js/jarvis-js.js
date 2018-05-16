@@ -9,7 +9,10 @@ $("#submit-info").on("click", function(event) {
     let fullAddress = street + " " + city + " " + state + " " + zip;
 
     let procedure = $("#select-list").val(); 
-    let radius = $("#select-radius").val();    
+    let radius = $("#select-radius").val(); 
+
+    let passcode =$("#passcode_id").val()//TODO
+
     console.log(zip)
     console.log(procedure);
     console.log(radius)
@@ -23,9 +26,43 @@ $("#submit-info").on("click", function(event) {
     sessionStorage.setItem("radius",radius);
 
     findLocalZips(zip);
+    postNewClient(street,city,state);
     
     });
-  
+
+    function newclientID(street,city,state){
+       let clientIDHelper = 
+            street+
+            city+
+            state+
+            (Math.round(Math.random()*255)).toString;
+        //Shuffle string
+        clientIDHelper
+            .split("")
+            .sort(function(a, b){return 0.5 - Math.random()})
+            .join("");
+    }
+
+    function postNewClient(client_userID,passcode,zipcode){
+     let newClient = {
+            client_userID: newclientID(),//GlobalID
+            passcode: passcode,//TODO add to html
+            zip_code: zipcode
+       }
+
+        // Send the POST request.
+      $.ajax("/api/newclient", {
+        type: "POST",
+        data: newClient
+      }).then(
+        function() {
+          console.log("created new client in database");
+          // Reload the page to get the updated list
+          location.reload();
+        }
+      );
+
+    }
 
     function findLocalZips() {
 
