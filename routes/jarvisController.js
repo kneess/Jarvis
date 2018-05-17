@@ -2,39 +2,53 @@ var express = require("express");
 var router = express.Router();
 var db = require("../models");
 var path = require("path");
+var Sequelize = require("sequelize");
 
-
-// module.exports = function(app) {
-
-    //html routes
+   //html routes
 
     router.get("/", function(req, res) {
         res.sendFile(path.join(__dirname, "../test.html"));
         });
 
+    // router.get("/api/location", function(req, res){
+    //   db.hospital.findAll({
+    //     where: {
+    //       surgery: "knee joint",
+    //       zip_code: req.body.location.zip_codes[0],
+    //       // order: [sequelize.fn('max', sequelize.col('cost')), 'DESC'],
+    //   }
+    //   }).then(function(dbHospital) {
+    //     console.log("dpHospital" + dbHospital);
+    //     console.log("You hit the router again");
+    //     res.json(dbHospital);       
+    // });
+    // })
 
     //api routes
 
-    router.post("/api/:location", function(req, res) {
+    router.post("/api/:location/", function(req, res) {
       console.log(req.params.location)
   console.log("you hit the router")
       console.log(req.body);
-        // db.hospital.findAll({
-        //   where: {
-        //     surgery: "knee joint",
-        //     zip_code: location
-        //   //   cost: {
-        //   //     [Op.lt]: 9000,
-        //   // }
-        // }
-        // }).then(function(dbHospital) {
-        //   console.log("You hit the router")
-        //   res.json(dbHospital);
-          
-        // });
-       
+        db.hospital.findAll({
+          where: {
+            surgery: "knee joint",
+            zip_code: req.body.location.zip_codes[0],
+            }, order: [['cost', "ASC"]]
+        }).then(function(dbHospital) {
+          console.log("dpHospital" + dbHospital);
+          console.log("You hit the router again");
+          var topFive = [];
+          var l = 5;
+          if (dbHospital < 5) {
+              l = dbHospital.length
+          }
+          for (i=0; i < l; i++) {
+            topFive.push(dbHospital[i]);
+          }
+          res.json(topFive);       
       });
-
+    });
       // router.post("/api/newclient", function(req, res) {
       //   console.log(req.body);
       //   // create takes an argument of an object describing the item we want to
@@ -53,4 +67,3 @@ var path = require("path");
 
       module.exports = router;
 
-// };
