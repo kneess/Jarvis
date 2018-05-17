@@ -17,30 +17,30 @@ app.use(bodyParser.json());
 
 app.use(express.static("public"));
 
-// var routes = require("./controllers/jarvisController.js");
+var routes = require("./routes/jarvisController.js");
 
-// app.use(routes);
+app.use(routes);
 
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "../Jarvis/test.html"));
-});
+// app.get("/", function(req, res) {
+//   res.sendFile(path.join(__dirname, "../Jarvis/test.html"));
+// });
 
-app.get("/api/:location/", function(req, res) {
-  db.hospital.findAll({
-  //   where: {
-  //     surgery: "knee joint",
-  //     cost: {
-  //       [Op.lt]: 9000,
-  //   }
-  // }
-  }).then(function(dbHospital) {
-    res.json(dbHospital);
-     console.log("dpHospital: " + dbHospital);
-  });
+// app.get("/api/:location/", function(req, res) {
+//   db.hospital.findAll({
+//   //   where: {
+//   //     surgery: "knee joint",
+//   //     cost: {
+//   //       [Op.lt]: 9000,
+//   //   }
+//   // }
+//   }).then(function(dbHospital) {
+//     res.json(dbHospital);
+//      console.log("dpHospital: " + dbHospital);
+//   });
  
-});
+// });
 
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

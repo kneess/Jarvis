@@ -1,0 +1,21 @@
+
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <h2>Here are lower cost options if you travel outside of your local area:</h2>
+            <ul class="top-ten list-group">
+            {{#each top-ten}}
+                <li class="top-ten list-group-item">
+                    {{this.cost}}
+                    {{this.hospital_name}}
+                    {{this.hospital_address}}
+                    {{this.hospital_city}}, {{this.state}} {{this.zip_code}}
+                {{/unless}}
+                </li>
+            {{/each}}
+            </ul>
+        </div>
