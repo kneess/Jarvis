@@ -46,7 +46,10 @@ $("#submit-info").on("click", function(event) {
             method: "GET"
           })
           .then(function(response) {
-          console.log(response);
-          sessionStorage.setItem("localZips", response);
+
+            var zipArray = json.stringify(response);
+            console.log(zipArray[0]);
+
+            sessionStorage.setItem("localZips", zipArray);
           });
         }
