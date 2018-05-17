@@ -84,6 +84,15 @@ $("#submit-info").on("click", function(event) {
           })
           .then(function(response) {
           console.log(response);
+          // var newZipCodes = {
+          //   location: response
+          // }
+          // $.ajax("/api/:location", {
+          //   type: "POST", 
+          //   data: newZipCodes
+          // })
           sessionStorage.setItem("localZips", response);
           });
         }
+
+        //we're trying to send the response as a reqeust to our route in jarvisController.  

@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
       cost: DataTypes.INTEGER,
       zip_code: DataTypes.INTEGER
       // state: DataTypes.STRING
-    });
+    }, {timestamps: false});
     return hospital;
 };
 
