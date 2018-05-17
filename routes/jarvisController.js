@@ -15,21 +15,23 @@ var path = require("path");
 
     //api routes
 
-    router.get("/api/:location/", function(req, res) {
-      var location = req.params.location;
-      console.log(location);
-        db.hospital.findAll({
-          where: {
-            surgery: "knee joint",
-            zip_code: location
-          //   cost: {
-          //     [Op.lt]: 9000,
-          // }
-        }
-        }).then(function(dbHospital) {
-          res.json(dbHospital);
+    router.post("/api/:location", function(req, res) {
+      console.log(req.params.location)
+  console.log("you hit the router")
+      console.log(req.body);
+        // db.hospital.findAll({
+        //   where: {
+        //     surgery: "knee joint",
+        //     zip_code: location
+        //   //   cost: {
+        //   //     [Op.lt]: 9000,
+        //   // }
+        // }
+        // }).then(function(dbHospital) {
+        //   console.log("You hit the router")
+        //   res.json(dbHospital);
           
-        });
+        // });
        
       });
 

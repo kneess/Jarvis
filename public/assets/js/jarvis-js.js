@@ -84,13 +84,14 @@ $("#submit-info").on("click", function(event) {
           })
           .then(function(response) {
           console.log(response);
-          // var newZipCodes = {
-          //   location: response
-          // }
-          // $.ajax("/api/:location", {
-          //   type: "POST", 
-          //   data: newZipCodes
-          // })
+          var newZipCodes = {
+            location: response
+          }
+          console.log(newZipCodes)
+          $.ajax("/api/location", {
+            type: "POST", 
+            data: {"":newZipCodes}
+          })
           sessionStorage.setItem("localZips", response);
           });
         }
