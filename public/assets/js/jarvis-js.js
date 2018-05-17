@@ -89,8 +89,8 @@ $("#submit-info").on("click", function(event) {
           }
           console.log(newZipCodes)
           $.ajax("/api/location", {
-            type: "GET", 
-            data: newZipCodes
+            type: "POST", 
+            data: {"":newZipCodes}
           })
           sessionStorage.setItem("localZips", response);
           });

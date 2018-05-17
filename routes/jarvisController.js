@@ -15,8 +15,8 @@ var path = require("path");
 
     //api routes
 
-    router.get("/api/location", function(req, res) {
-      console.log(req.body)
+    router.post("/api/:location", function(req, res) {
+      console.log(req.params.location)
   console.log("you hit the router")
       console.log(req.body);
         // db.hospital.findAll({
