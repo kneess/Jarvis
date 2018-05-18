@@ -8,14 +8,22 @@
   },
   "test": {
     "username": "root",
+<<<<<<< HEAD
     "password": "",
+=======
+    "password": "Myh2kw2htkw2ft",
+>>>>>>> 1ab80bdc1829747541f6a4e78568f6b62d6bee9b
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
+<<<<<<< HEAD
     "password": "",
+=======
+    "password": "Myh2kw2htkw2ft",
+>>>>>>> 1ab80bdc1829747541f6a4e78568f6b62d6bee9b
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql"

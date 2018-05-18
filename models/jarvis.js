@@ -7,9 +7,10 @@ module.exports = function(sequelize, DataTypes) {
       address: DataTypes.TEXT,
       city: DataTypes.STRING,
       state: DataTypes.STRING,
-      zip_code: DataTypes.INTEGER
+      zip_code: DataTypes.INTEGER,
 
     });
+
     return hospital;
 };
 

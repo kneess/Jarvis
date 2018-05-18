@@ -26,7 +26,7 @@ $("#submit-info").on("click", function(event) {
     sessionStorage.setItem("radius",radius);
 
     findLocalZips(zip);
-    postNewClient(street,city,state);
+    // postNewClient(street,city,state);
     
     });
 
@@ -43,26 +43,26 @@ $("#submit-info").on("click", function(event) {
             .join("");
     }
 
-    function postNewClient(client_userID,passcode,zipcode){
-     let newClient = {
-            client_userID: newclientID(),//GlobalID
-            passcode: passcode,//TODO add to html
-            zip_code: zipcode
-       }
+    // function postNewClient(client_userID,passcode,zipcode){
+    //  let newClient = {
+    //         client_userID: newclientID(),//GlobalID
+    //         passcode: passcode,//TODO add to html
+    //         zip_code: zipcode
+    //    }
 
-        // Send the POST request.
-      $.ajax("/api/newclient", {
-        type: "POST",
-        data: newClient
-      }).then(
-        function() {
-          console.log("created new client in database");
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
+    //     // Send the POST request.
+    //   $.ajax("/api/newclient", {
+    //     type: "POST",
+    //     data: newClient
+    //   }).then(
+    //     function() {
+    //       console.log("created new client in database");
+    //       // Reload the page to get the updated list
+    //       location.reload();
+    //     }
+    //   );
 
-    }
+    // }
 
     function findLocalZips() {
 
@@ -83,12 +83,19 @@ $("#submit-info").on("click", function(event) {
             method: "GET"
           })
           .then(function(response) {
-
-            console.log(response.zip_codes);
-            var zipArray = response.zip_codes;
-            var zipString = zipArray.join();
-            console.log(zipString);
-
-            sessionStorage.setItem("localZips", zipString);
+          console.log(response);
+          var newZipCodes = {
+            location: response
+          }
+          console.log(newZipCodes)
+          $.ajax("/api/location", {
+            type: "POST", 
+            data: {"":newZipCodes}
+          }).then(function(res) {
+            console.log(res);
+          })
+          sessionStorage.setItem("localZips", response);
           });
         }
+
+  
