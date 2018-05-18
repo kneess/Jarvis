@@ -1,3 +1,6 @@
+$(function() {
+
+
 $("#submit-info").on("click", function(event) {
         
     event.preventDefault();
@@ -97,5 +100,5 @@ $("#submit-info").on("click", function(event) {
           sessionStorage.setItem("localZips", response);
           });
         }
-
+    });
   

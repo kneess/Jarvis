@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 app.use(express.static("public"));
 
-var routes = require("./routes/jarvisController.js");
+var routes = require("./routes/jarvisController");
 
 app.use(routes);
 
