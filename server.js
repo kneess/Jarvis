@@ -17,9 +17,13 @@ app.use(bodyParser.json());
 
 app.use(express.static("public"));
 
-var routes = require("./routes/jarvisController.js");
+var routes = require("./routes/jarvisController");
 
 app.use(routes);
+
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // app.get("/", function(req, res) {
 //   res.sendFile(path.join(__dirname, "../Jarvis/test.html"));
