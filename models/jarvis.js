@@ -1,6 +1,6 @@
 //sequelize goes here
 module.exports = function(sequelize, DataTypes) {
-    var hospital = sequelize.define("hospital", {
+    var hospitals = sequelize.define("hospitals", {
       hospital_name: DataTypes.STRING,
       surgery: DataTypes.STRING,
       cost: DataTypes.INTEGER,
@@ -9,9 +9,13 @@ module.exports = function(sequelize, DataTypes) {
       state: DataTypes.STRING,
       zip_code: DataTypes.INTEGER,
 
-    }, {timestamps: false});
+    },
+     {timestamps: false},
+     {freezeTableName: true}
+    
+    );
 
-    return hospital;
+    return hospitals;
 };
 
   
