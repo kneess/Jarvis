@@ -84,9 +84,11 @@ $("#submit-info").on("click", function(event) {
           })
           .then(function(response) {
 
-            var zipArray = json.stringify(response);
-            console.log(zipArray[0]);
+            console.log(response.zip_codes);
+            var zipArray = response.zip_codes;
+            var zipString = zipArray.join();
+            console.log(zipString);
 
-            sessionStorage.setItem("localZips", zipArray);
+            sessionStorage.setItem("localZips", zipString);
           });
         }
