@@ -7,7 +7,9 @@ var Sequelize = require("sequelize");
    //html routes
 
     router.get("/", function(req, res) {
-        res.sendFile(path.join(__dirname, "../test.html"));
+        //res.sendFile(path.join(__dirname, "../test.html"));
+        res.render("index", req);
+
         });
 
     // router.get("/api/location", function(req, res){
