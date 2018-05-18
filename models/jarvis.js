@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       state: DataTypes.STRING,
       zip_code: DataTypes.INTEGER,
 
-    });
+    }, {timestamps: false});
 
     return hospital;
 };
