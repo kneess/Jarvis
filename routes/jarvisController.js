@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require("../models");
 var path = require("path");
 var Sequelize = require("sequelize");
+var Op = Sequelize.Op;
 
    //html routes
 
@@ -31,11 +32,12 @@ var Sequelize = require("sequelize");
       console.log("You hit the router")
       console.log(req.body);
 
-      var newZip = parseInt(req.body.zips)
+      // var newZip = req.body.zips
+      // console.log(newZip);
         db.hospitals.findAll({
           where: {
             surgery: "knee joint",
-            zip_code: newZip
+            zip_code:{[Op.in]:req.body.zips}
             }, order: [['cost', "ASC"]]
         }).then(function(dbHospital) {
           // console.log("dpHospital" + dbHospital);
@@ -53,7 +55,7 @@ var Sequelize = require("sequelize");
     }); 
     
     function cheapestHospitals(dbHospital){
-      console.log("dpHospital" + dbHospital);
+      // console.log("dpHospital" + dbHospital);
       console.log("You hit the router again");
       var topFive = [];
       var l = 5;
