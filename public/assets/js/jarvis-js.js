@@ -79,7 +79,7 @@ $("#submit-info").on("click", function(event) {
         var ZIPAPIKEY = "6xsv3It4NIGhyQONSzZtJzG35hXBHQg6JJIqO6B7jnv6S8PlAkadIbi6Pg56RUQ2";
         var userZip = sessionStorage.getItem("zip");
         console.log(userZip);
-        var queryURL = "https://www.zipcodeapi.com/rest/"+ZIPAPIKEY+"/radius.json/"+userZip+"/20/miles?minimal"
+        var queryURL = "https://www.zipcodeapi.com/rest/"+ZIPAPIKEY+"/radius.json/"+userZip+"/1/miles?minimal"
         console.log(queryURL);
         $.ajax({
             url: queryURL,
@@ -87,18 +87,15 @@ $("#submit-info").on("click", function(event) {
           })
           .then(function(response) {
           console.log(response);
-          var newZipCodes = {
-            location: response
-          }
-          console.log(newZipCodes)
-          $.ajax("/api/location", {
-            type: "POST", 
-            data: {"":newZipCodes}
+          var zipArray = response.zip_codes;
+
+          $.ajax("/api", {
+            type: "POST",
+            data: {"zips":zipArray}
           }).then(function(res) {
             console.log(res);
           })
-          sessionStorage.setItem("localZips", response);
-          });
-        }
-    });
+        });
+    }
+});
   
