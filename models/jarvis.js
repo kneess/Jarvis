@@ -4,9 +4,13 @@ module.exports = function(sequelize, DataTypes) {
       hospital_name: DataTypes.STRING,
       surgery: DataTypes.STRING,
       cost: DataTypes.INTEGER,
-      zip_code: DataTypes.INTEGER
-      // state: DataTypes.STRING
+      address: DataTypes.TEXT,
+      city: DataTypes.STRING,
+      state: DataTypes.STRING,
+      zip_code: DataTypes.INTEGER,
+
     }, {timestamps: false});
+
     return hospital;
 };
 
