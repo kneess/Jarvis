@@ -1,9 +1,10 @@
-// var express = require("express");
-// var router = express.Router();
+ var express = require("express");
+ var router = express.Router();
 // var db = require("../models");
-// var path = require("path");
-// var Sequelize = require("sequelize");
+ var path = require("path");
+ var Sequelize = require("sequelize");
 var db = require('../models')
+// var Op = Sequelize.Op;
 //html routes
 var authController = require('../controllers/authcontroller.js');
 // 
@@ -55,33 +56,53 @@ app.post('/signin', passport.authenticate('local-signin', {
 }
 
 ));
-//api routes
 
-app.post("/api/:location/", function(req, res) {
-  console.log(req.params.location)
-console.log("you hit the router")
+//api routes
+var Op = Sequelize.Op;
+app.post("/api", function(req, res) {
+  console.log("You hit the router")
   console.log(req.body);
-    db.hospital.findAll({
+
+  // var newZip = req.body.zips
+  // console.log(newZip);
+    db.hospitals.findAll({
       where: {
         surgery: "knee joint",
-        zip_code: req.body.location.zip_codes[0],
+        zip_code:{[Op.in]:req.body.zips}
         }, order: [['cost', "ASC"]]
     }).then(function(dbHospital) {
-      console.log("dpHospital" + dbHospital);
-      console.log("You hit the router again");
-      var topFive = [];
-      var l = 5;
-      if (dbHospital < 5) {
-          l = dbHospital.length
-      }
-      for (i=0; i < l; i++) {
-        topFive.push(dbHospital[i]);
-      }
-      res.json(topFive);       
+      // console.log("dpHospital" + dbHospital);
+      // console.log("You hit the router again");
+      // var topFive = [];
+      // var l = 5;
+      // if (dbHospital < 5) {
+      //     l = dbHospital.length
+      // }
+      // for (i=0; i < l; i++) {
+      //   topFive.push(dbHospital[i]);
+      // }
+      res.json(cheapestHospitals(dbHospital));       
   });
-});
+}); 
 
+function cheapestHospitals(dbHospital){
+  console.log("dpHospital" , dbHospital);
+  console.log("You hit the router again");
+  var topFive = [];
+  var l = 5;
+  if (dbHospital < 5) {
+      l = dbHospital.length
+  }
+  for (i=0; i < l; i++) {
+    topFive.push(dbHospital[i]);
+  }
+  // res.json(topFive); 
+  return topFive;
+  
+};
 }
+
+
     // router.get("/api/location", function(req, res){
     //   db.hospital.findAll({
     //     where: {
@@ -112,5 +133,5 @@ console.log("you hit the router")
       //   });
       // });
 
-      // module.exports = router;
+      //  module.exports = router;
 
