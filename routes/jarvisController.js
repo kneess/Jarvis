@@ -31,7 +31,7 @@ var Op = Sequelize.Op;
     router.post("/api", function(req, res) {
       console.log("You hit the router")
       console.log(req.body);
-
+ 
       // var newZip = req.body.zips
       // console.log(newZip);
         db.hospitals.findAll({
@@ -55,7 +55,7 @@ var Op = Sequelize.Op;
     }); 
     
     function cheapestHospitals(dbHospital){
-      // console.log("dpHospital" + dbHospital);
+      console.log("dpHospital" , dbHospital);
       console.log("You hit the router again");
       var topFive = [];
       var l = 5;
