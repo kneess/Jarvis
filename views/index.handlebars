@@ -1,21 +1,42 @@
  <div class="jumbotron jumbotron-fluid">
                     <div class="container">
-                      <img src="./assets/images/Jarvis Logo.JPG" alt="Jarvis Logo" width="250pt">
+                        <h1 id="title">Welcome to Jarvis</h1>
+                                    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Click Here to Begin
+</button>
+
                     </div>
                   </div>
 
-            <div class="container">
-                <div class="row">
-                    <h4 class="user-info">Enter your address:</h4>
+                
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Enter Your Information</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="container">
+<div class="row">
+                    <h4 class="user-info">Address:</h4>
                 </div>
                 <div class="row">
                         <form>
                             <div class="form-group"> <!-- Street 1 -->
-                                    <label for="street1_id" class="control-label">Street Address:</label>
+                                    <label for="street1_id" class="control-label">Street:</label>
                                     <input type="text" class="form-control" id="street1_id" name="street1">
                             </div>					
                             <div class="row">
-                                <div class="col-sm-7">    
+                                <div class="col-sm-6">    
                                     <div class="form-group"> <!-- City-->
                                     <label for="city_id" class="control-label">City:</label>
                                     <input type="text" class="form-control" id="city_id" name="city">
@@ -27,7 +48,7 @@
                                     <input type="text" class="form-control" id="state_id" name="ST">      
                                 </div>
                             </div>
-                                <div class="col-sm-3">       
+                                <div class="col-sm-4">       
                                 <div class="form-group"> <!-- Zip Code-->
                                     <label for="zip_id" class="control-label">Zip Code:</label>
                                     <input type="text" class="form-control" id="zip_id" name="zip">
@@ -41,10 +62,8 @@
                     <div class="form-group">
                             <label for="select-list">Select a procedure to price out:</label>
                             <select class="form-control" id="select-list">
-                              <option>placeholder 1</option>
-                              <option>placeholder 2</option>
-                              <option>placeholder 3</option>
-                              <option>placeholder 4</option>
+                              <option>Knee Joint</option>
+                              
                             </select>
                             <label for="select-list">Select the furthest you are willing to travel:</label>
                             <select class="form-control" id="select-radius">
@@ -52,11 +71,36 @@
                               <option class="miles" value="250">250 miles</option>
                               <option class="miles" value="100">100 miles</option>
                             </select>
-                            <br>
-                            <button type="button" id="submit-info" class="btn btn-primary" data-dismiss="modal">Submit</button>
 
                           </div>
 
+            </div>      
             </div>
+            </div>
+      <div class="modal-footer">
+        <button type="button" id="submit-info" class="btn btn-primary" data-dismiss="modal">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-            </div>
+<div id="top-local">
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <h2>Here are the lowest cost options in your area:</h2>
+            <ul class="top-ten list-group">
+            {{#each hospitals}}
+                <li class="top-ten list-group-item">
+                    {{this.cost}}
+                    {{this.hospital_name}}
+                    {{this.address}}
+                    {{this.city}}, {{this.state}} {{this.zip_code}}
+                    <!-- driving distance/link to map etc.!-->
+                </li>
+            {{/each}}
+            </ul>
+        </div>
+        </div>
