@@ -1,4 +1,4 @@
-//var exports = module.exports = {}
+var exports = module.exports = {}
 
 
 exports.index = function(req, res) {
