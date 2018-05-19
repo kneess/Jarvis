@@ -8,8 +8,10 @@ var path = require("path");
 var db = require("./models");
 var Sequelize = require('sequelize');
 var mysql2 = require('mysql2');
-
+var passport = require('passport');
 var app = express();
+var session    = require('express-session')
+
 var PORT = process.env.PORT || 8080;
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,13 +19,24 @@ app.use(bodyParser.json());
 
 app.use(express.static("public"));
 
-var routes = require("./routes/jarvisController");
+require('./config/passport/passport.js')(passport, db.user);
 
-app.use(routes);
+
+//app.use(routes);
 
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
+
+app.use(passport.initialize());
+
+app.use(passport.session()); // persistent login sessions
+
+var routes = require("./routes/jarvis")(app, passport);
+// require('./config/passport/passport.js')(passport, models.user);
 
 // app.get("/", function(req, res) {
 //   res.sendFile(path.join(__dirname, "../Jarvis/test.html"));
