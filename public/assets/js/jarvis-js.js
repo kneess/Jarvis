@@ -29,6 +29,7 @@ $("#submit-info").on("click", function(event) {
     sessionStorage.setItem("radius",radius);
 
     findLocalZips(zip);
+    findRadiusZips(zip);
     // postNewClient(street,city,state);
     
     });
@@ -74,19 +75,18 @@ $("#submit-info").on("click", function(event) {
                 options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
             }
         });
-        
-
+         
         var ZIPAPIKEY = "6xsv3It4NIGhyQONSzZtJzG35hXBHQg6JJIqO6B7jnv6S8PlAkadIbi6Pg56RUQ2";
         var userZip = sessionStorage.getItem("zip");
         console.log(userZip);
-        var queryURL = "https://www.zipcodeapi.com/rest/"+ZIPAPIKEY+"/radius.json/"+userZip+"/1/miles?minimal"
+        var queryURL = "https://www.zipcodeapi.com/rest/"+ZIPAPIKEY+"/radius.json/"+userZip+"/20/miles?minimal"
         console.log(queryURL);
         $.ajax({
             url: queryURL,
             method: "GET"
-          })
+          }) 
           .then(function(response) {
-          console.log(response);
+          console.log('zippy zips', response);
           var zipArray = response.zip_codes;
 
           $.ajax("/api", {
@@ -97,5 +97,68 @@ $("#submit-info").on("click", function(event) {
           })
         });
     }
+
+    function findRadiusZips() {
+        $.ajaxPrefilter(function(options) {
+            if (options.crossDomain && $.support.cors) {
+                options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+            }
+        });
+      
+        var ZIPAPIKEY = "6xsv3It4NIGhyQONSzZtJzG35hXBHQg6JJIqO6B7jnv6S8PlAkadIbi6Pg56RUQ2";
+        var userZip = sessionStorage.getItem("zip");
+        var userRadius = sessionStorage.getItem("radius");
+        console.log(userZip);
+        var queryURL = "https://www.zipcodeapi.com/rest/"+ZIPAPIKEY+"/radius.json/"+userZip+"/" + userRadius + "/miles?minimal"
+        // var queryURL = "https://www.zipcodeapi.com/rest/"+ZIPAPIKEY+"/radius.json/"+userZip+"/3000/miles?minimal"
+        console.log(queryURL);
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+          }) 
+          .then(function(response) {
+          console.log(response);
+          var radiusZipArray = response.zip_codes;
+
+          $.ajax("/api", {
+            type: "POST",
+            data: {"zips":radiusZipArray}
+          }).then(function(res) {
+            console.log(res);
+          })
+        });
+    }
+
+    var MQaddress = sessionStorage.getItem("fulladdress");
+    console.log(MQaddress);
+    function getDistance() {
+    
+        $.ajaxPrefilter(function(options) {
+            if (options.crossDomain && $.support.cors) {
+                options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+            }
+        });
+        var hospitalAddressTest = "92+W+Vaughn+Ave+Gilbert+AZ"
+    
+        var MQAPIKey = "UVs4ACBHVSdUdsBxF6ZcdIv1OSmOsM61";
+        var MQaddress = sessionStorage.getItem("fulladdress");
+        console.log(MQaddress);
+        var queryURL= "http://www.mapquestapi.com/directions/v2/route?key="+MQAPIKey+"&from="+MQaddress+"&to="+hospitalAddressTest
+    
+        console.log(queryURL);
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+          })
+          .then(function(response) {
+           var distance =  JSON.stringify(response.route.distance);
+           console.log(distance);
+           var costToDrive = (parseInt(distance) * .545) * 2;
+           console.log(costToDrive);
+           
+          });
+        }
+
+
 });
   
