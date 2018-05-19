@@ -125,26 +125,36 @@ $("#submit-info").on("click", function(event) {
             data: {"zips":radiusZipArray}
           }).then(function(res) {
             console.log(res);
+            var hospitalAddress = [];
+            for (var i = 0; i < 5; i++){
+            hospitalAddress[i] = res[i].address + "+" + res[i].city + "+" + res[i].state + "+" + res[i].zip_code;
+            console.log(hospitalAddress[i]);
+
+            };
+
+            for (var i = 0; i<5; i++){
+            getDistance(hospitalAddress[i]);
+            };
+
+
           })
         });
     }
-<<<<<<< HEAD
 
     var MQaddress = sessionStorage.getItem("fulladdress");
     console.log(MQaddress);
-    function getDistance() {
+    function getDistance(hospitalAddress) {
     
         $.ajaxPrefilter(function(options) {
             if (options.crossDomain && $.support.cors) {
                 options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
             }
         });
-        var hospitalAddressTest = "92+W+Vaughn+Ave+Gilbert+AZ"
     
         var MQAPIKey = "UVs4ACBHVSdUdsBxF6ZcdIv1OSmOsM61";
         var MQaddress = sessionStorage.getItem("fulladdress");
         console.log(MQaddress);
-        var queryURL= "http://www.mapquestapi.com/directions/v2/route?key="+MQAPIKey+"&from="+MQaddress+"&to="+hospitalAddressTest
+        var queryURL= "http://www.mapquestapi.com/directions/v2/route?key="+MQAPIKey+"&from="+MQaddress+"&to="+hospitalAddress
     
         console.log(queryURL);
         $.ajax({
@@ -154,14 +164,12 @@ $("#submit-info").on("click", function(event) {
           .then(function(response) {
            var distance =  JSON.stringify(response.route.distance);
            console.log(distance);
-           var costToDrive = (parseInt(distance) * .545) * 2;
+           var costToDrive = ((distance * .545) * 2).toFixed(2);
            console.log(costToDrive);
            
           });
         }
 
 
-=======
->>>>>>> ad7abb9c7b9b0d25c4fc672d186f343e6e8cca8b
 });
   
