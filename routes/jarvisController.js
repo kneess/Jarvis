@@ -3,11 +3,11 @@ var router = express.Router();
 var db = require("../models");
 var path = require("path");
 var Sequelize = require("sequelize");
+var Op = Sequelize.Op;
 
    //html routes
 
     router.get("/", function(req, res) {
-        //res.sendFile(path.join(__dirname, "../test.html"));
         res.render("index", req);
 
         });
@@ -28,29 +28,48 @@ var Sequelize = require("sequelize");
 
     //api routes
 
-    router.post("/api/:location/", function(req, res) {
-      console.log(req.params.location)
-  console.log("you hit the router")
+    router.post("/api", function(req, res) {
+      console.log("You hit the router")
       console.log(req.body);
-        db.hospital.findAll({
+
+      // var newZip = req.body.zips
+      // console.log(newZip);
+        db.hospitals.findAll({
           where: {
             surgery: "knee joint",
-            zip_code: req.body.location.zip_codes[0],
+            zip_code:{[Op.in]:req.body.zips}
             }, order: [['cost', "ASC"]]
         }).then(function(dbHospital) {
-          console.log("dpHospital" + dbHospital);
-          console.log("You hit the router again");
-          var topFive = [];
-          var l = 5;
-          if (dbHospital < 5) {
-              l = dbHospital.length
-          }
-          for (i=0; i < l; i++) {
-            topFive.push(dbHospital[i]);
-          }
-          res.json(topFive);       
+          // console.log("dpHospital" + dbHospital);
+          // console.log("You hit the router again");
+          // var topFive = [];
+          // var l = 5;
+          // if (dbHospital < 5) {
+          //     l = dbHospital.length
+          // }
+          // for (i=0; i < l; i++) {
+          //   topFive.push(dbHospital[i]);
+          // }
+          res.json(cheapestHospitals(dbHospital));       
       });
-    });
+    }); 
+    
+    function cheapestHospitals(dbHospital){
+      // console.log("dpHospital" + dbHospital);
+      console.log("You hit the router again");
+      var topFive = [];
+      var l = 5;
+      if (dbHospital < 5) {
+          l = dbHospital.length
+      }
+      for (i=0; i < l; i++) {
+        topFive.push(dbHospital[i]);
+      }
+      // res.json(topFive); 
+      return topFive;
+      
+    };
+
       // router.post("/api/newclient", function(req, res) {
       //   console.log(req.body);
       //   // create takes an argument of an object describing the item we want to
