@@ -128,6 +128,7 @@ $("#submit-info").on("click", function(event) {
           })
         });
     }
+<<<<<<< HEAD
 
     var MQaddress = sessionStorage.getItem("fulladdress");
     console.log(MQaddress);
@@ -160,5 +161,7 @@ $("#submit-info").on("click", function(event) {
         }
 
 
+=======
+>>>>>>> ad7abb9c7b9b0d25c4fc672d186f343e6e8cca8b
 });
   
