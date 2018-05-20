@@ -128,7 +128,7 @@ $("#submit-info").on("click", function(event) {
             $("#results").show();
             console.log(res);
             var hospitalAddress = [];
-            for (var i = 0; i < 5; i++){
+            for (var i = 0; i < 6; i++){
             hospitalAddress[i] = res[i].address + "+" + res[i].city + "+" + res[i].state + "+" + res[i].zip_code;
             console.log(hospitalAddress[i]);
             getDistance(hospitalAddress[i], i);
@@ -136,6 +136,7 @@ $("#submit-info").on("click", function(event) {
             };
 
             for (var i = 0; i <res.length; i++){
+                $('#results','#cost','#address').empty();
 
                 $("#results"+i).append((i+1)+". " + res[i].hospital_name +" ");
                 $("#cost"+i).append("Cost of Procedure:  $" + res[i].cost + " ");
