@@ -6,6 +6,45 @@
 </head>
  
 <body>
+
+        <div class="jumbotron jumbotron-fluid" id="welcome" style="background-color: rgb(143, 21, 21)">
+        <div class="container">
+            <h1 id="title">Jarvis</h1>
+            <h3 id="slogan">Empowering Healthcare Choice.</h3>
+
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-11">
+            <h3>Please enter your information:</h3>
+            <br>
+    <form id="signup" name="signup" method="post" action="/signup">
+        <label for="email">Email Address</label>
+        <input class="text" name="email" type="email" />
+        <br>
+        <label for="firstname">Firstname</label>
+        <input name="firstname" type="text" />
+        <br>
+        <label for="lastname">Lastname</label>
+        <input name="lastname" type="text" />
+        <br>
+        <label for="password">Password</label>
+        <input name="password" type="password" />
+        <br>
+        <br>
+        <input class="btn" type="submit" value="Sign Up" />
+    </form>
+    </div>
+    </div>
+    
+
+    
+{{!-- 
+
     <form id="signup" name="signup" method="post" action="/signup">
         <label for="email">Email Address</label>
         <input class="text" name="email" type="email" />
@@ -18,7 +57,7 @@
         <input class="btn" type="submit" value="Sign Up" />
     </form>
 
-    <h3>click here to sign</h3><a href="/signin"><button>sign in</button></a>
+    <h3>click here to sign</h3><a href="/signin"><button>sign in</button></a> --}}
 </body>
  
 </html>

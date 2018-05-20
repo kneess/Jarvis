@@ -138,11 +138,11 @@ $("#submit-info").on("click", function(event) {
             for (var i = 0; i <res.length; i++){
 
                 $("#results"+i).append((i+1)+". " + res[i].hospital_name +" ");
-                $("#results"+i).append("$" + res[i].cost + " ");
-                $("#results"+i).append(res[i].address +" ");
-                $("#results"+i).append(res[i].city +" ");
-                $("#results"+i).append(res[i].state +" ");
-                $("#results"+i).append(res[i].zip_code);
+                $("#cost"+i).append("Cost of Procedure:  $" + res[i].cost + " ");
+                $("#address"+i).append(res[i].address +" ");
+                $("#address"+i).append(res[i].city +" ");
+                $("#address"+i).append(res[i].state +" ");
+                $("#address"+i).append(res[i].zip_code);
                 
           
 
