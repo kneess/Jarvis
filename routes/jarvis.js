@@ -65,16 +65,16 @@ app.post("/api", function(req, res) {
 function cheapestHospitals(dbHospital){
   console.log("dpHospital" , dbHospital);
   console.log("You hit the router again");
-  var topFive = [];
-  var l = 5;
-  if (dbHospital < 5) {
+  var topSix = [];
+  var l = 6;
+  if (dbHospital < 6) {
       l = dbHospital.length
   }
   for (i=0; i < l; i++) {
-    topFive.push(dbHospital[i]);
+    topSix.push(dbHospital[i]);
   }
-  // res.json(topFive); 
-  return topFive;
+  // res.json(topSix); 
+  return topSix;
   
 };
 }
