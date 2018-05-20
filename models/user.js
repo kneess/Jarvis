@@ -45,6 +45,11 @@ module.exports = function(sequelize, Sequelize) {
         status: {
             type: Sequelize.ENUM('active', 'inactive'),
             defaultValue: 'inactive'
+        },
+
+        saved_hospitalIds: {
+            type: Sequelize.STRING,
+            allowNull: true
         }
  
  
