@@ -135,6 +135,7 @@ $("#submit-info").on("click", function(event) {
     
             };
 
+            let hospitalIds =[];
             for (var i = 0; i <res.length; i++){
                 $('#results','#cost','#address').empty();
 
@@ -144,11 +145,13 @@ $("#submit-info").on("click", function(event) {
                 $("#address"+i).append(res[i].city +" ");
                 $("#address"+i).append(res[i].state +" ");
                 $("#address"+i).append(res[i].zip_code);
+                hospitalIds.push(res[i].id)
                 
-          
-
+                console.log("Hospital Name: " + res[i].hospital_name);
+                console.log("Hospital Id: " + res[i].id)
             };
-
+            console.log("The total hostpital ids are: " + hospitalIds );
+           
 
           })
         });
