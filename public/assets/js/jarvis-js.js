@@ -1,9 +1,10 @@
 $(function() {
-
+$("#results").hide();
 
 $("#submit-info").on("click", function(event) {
         
     event.preventDefault();
+
     let street = $("#street1_id").val().trim();
     let city = $("#city_id").val().trim();
     let state = $("#state_id").val().trim();
@@ -124,6 +125,7 @@ $("#submit-info").on("click", function(event) {
             type: "POST",
             data: {"zips":radiusZipArray}
           }).then(function(res) {
+            $("#results").show();
             console.log(res);
             var hospitalAddress = [];
             for (var i = 0; i < 5; i++){
@@ -178,9 +180,6 @@ $("#submit-info").on("click", function(event) {
            console.log(costToDrive);
            $("#drive_cost"+i).append("Distance: " + distance + " miles");
            $("#drive_cost"+i).append(" Cost to drive there: $" + costToDrive);
-
-
-
            
           });
         }
