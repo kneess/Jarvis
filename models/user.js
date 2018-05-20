@@ -49,7 +49,6 @@ module.exports = function(sequelize, Sequelize) {
 
         saved_hospitalIds: {
             type: Sequelize.STRING,
-            allowNull: true
         }
  
  
