@@ -125,8 +125,66 @@ $("#submit-info").on("click", function(event) {
             data: {"zips":radiusZipArray}
           }).then(function(res) {
             console.log(res);
+            var hospitalAddress = [];
+            for (var i = 0; i < 5; i++){
+            hospitalAddress[i] = res[i].address + "+" + res[i].city + "+" + res[i].state + "+" + res[i].zip_code;
+            console.log(hospitalAddress[i]);
+            getDistance(hospitalAddress[i], i);
+    
+            };
+
+            for (var i = 0; i <res.length; i++){
+
+                $("#results"+i).append((i+1)+". " + res[i].hospital_name +" ");
+                $("#results"+i).append("$" + res[i].cost + " ");
+                $("#results"+i).append(res[i].address +" ");
+                $("#results"+i).append(res[i].city +" ");
+                $("#results"+i).append(res[i].state +" ");
+                $("#results"+i).append(res[i].zip_code);
+                
+          
+
+            };
+
+
           })
         });
     }
+
+    var MQaddress = sessionStorage.getItem("fulladdress");
+    console.log(MQaddress);
+    function getDistance(hospitalAddress, i) {
+    
+        $.ajaxPrefilter(function(options) {
+            if (options.crossDomain && $.support.cors) {
+                options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+            }
+        });
+    
+        var MQAPIKey = "UVs4ACBHVSdUdsBxF6ZcdIv1OSmOsM61";
+        var MQaddress = sessionStorage.getItem("fulladdress");
+        console.log(MQaddress);
+        var queryURL= "http://www.mapquestapi.com/directions/v2/route?key="+MQAPIKey+"&from="+MQaddress+"&to="+hospitalAddress
+    
+        console.log(queryURL);
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+          })
+          .then(function(response) {
+           var distance =  JSON.stringify(response.route.distance);
+           console.log(distance);
+           var costToDrive = ((distance * .545) * 2).toFixed(2);
+           console.log(costToDrive);
+           $("#drive_cost"+i).append("Distance: " + distance + " miles");
+           $("#drive_cost"+i).append(" Cost to drive there: $" + costToDrive);
+
+
+
+           
+          });
+        }
+
+
 });
   

@@ -7,3 +7,23 @@ body {
     background: rgb(51, 51, 143);
 }
 
+#title {
+    font-family: 'Racing Sans One', cursive;
+    color: white;
+    font-size: 60pt;
+
+}
+
+#slogan {
+    font-family: 'Merriweather', serif;
+    color: whitesmoke;
+}
+
+#welcome {
+
+    margin-bottom: 0px;
+    height: 350px;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+    background:transparent;
+}

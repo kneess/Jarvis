@@ -1,31 +1,19 @@
- <div class="jumbotron jumbotron-fluid" style= "background-color: rgb(51, 51, 143)">
+ <div class="jumbotron jumbotron-fluid" id="welcome" style= "background-color: rgb(143, 21, 21)">
                     <div class="container">
-<<<<<<< HEAD
-                      <img src="./assets/images/Jarvis Logo.JPG" alt="Jarvis Logo" width="60%" style= "border-radius: 24px" >
+                        <h1 id="title">*Jarvis</h1>
+                        <h3 id="slogan">Empowering Healthcare Choice.</h3>
+                                    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Click Here to Begin</button>
+
                     </div>
                   </div>
-                  <div>
+
+                
+
+
+ <div>
                       <a href="/logout"><button>Logout</button></a>
                   </div>
-
-            <div class="container" >
-                
-                <div class="row">
-                    <h4 class="user-info">Enter your address:</h4>
-=======
-                        <h1 id="title">Welcome to Jarvis</h1>
-                                    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Click Here to Begin
-</button>
-
-                    </div>
-                  </div>
-
-                
-
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -41,7 +29,6 @@
           <div class="container">
 <div class="row">
                     <h4 class="user-info">Address:</h4>
->>>>>>> 5019d7aab3eb524ec9fe1736b0297fe3fea01e08
                 </div>
                 <div class="row">
                         <form>
@@ -103,18 +90,27 @@
     <div class="row">
 
         <div class="col-md-12">
+<div id="results0"></div>
+<div id="drive_cost0"></div>
 
-            <h2>Here are the lowest cost options in your area:</h2>
-            <ul class="top-ten list-group">
-            {{#each hospitals}}
-                <li class="top-ten list-group-item">
-                    {{this.cost}}
-                    {{this.hospital_name}}
-                    {{this.address}}
-                    {{this.city}}, {{this.state}} {{this.zip_code}}
-                    <!-- driving distance/link to map etc.!-->
-                </li>
-            {{/each}}
-            </ul>
+<div id="results1"></div>
+<div id="drive_cost1"></div>
+
+<div id="results2"></div>
+<div id="drive_cost2"></div>
+
+<div id="results3"></div>
+<div id="drive_cost3"></div>
+
+<div id="results4"></div>
+<div id="drive_cost4"></div>
+
+<div id="results5"></div>
+<div id="drive_cost5"></div>
+
+
+
+
+            
         </div>
         </div>
