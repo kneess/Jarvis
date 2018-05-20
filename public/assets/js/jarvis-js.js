@@ -2,8 +2,11 @@ $(function() {
 $("#results").hide();
 
 $("#submit-info").on("click", function(event) {
+   
         
     event.preventDefault();
+
+    
 
     let street = $("#street1_id").val().trim();
     let city = $("#city_id").val().trim();
@@ -14,8 +17,6 @@ $("#submit-info").on("click", function(event) {
 
     let procedure = $("#select-list").val(); 
     let radius = $("#select-radius").val(); 
-
-    let passcode =$("#passcode_id").val()//TODO
 
     console.log(zip)
     console.log(procedure);
@@ -31,43 +32,9 @@ $("#submit-info").on("click", function(event) {
 
     findLocalZips(zip);
     findRadiusZips(zip);
-    // postNewClient(street,city,state);
+    
     
     });
-
-    function newclientID(street,city,state){
-       let clientIDHelper = 
-            street+
-            city+
-            state+
-            (Math.round(Math.random()*255)).toString;
-        //Shuffle string
-        clientIDHelper
-            .split("")
-            .sort(function(a, b){return 0.5 - Math.random()})
-            .join("");
-    }
-
-    // function postNewClient(client_userID,passcode,zipcode){
-    //  let newClient = {
-    //         client_userID: newclientID(),//GlobalID
-    //         passcode: passcode,//TODO add to html
-    //         zip_code: zipcode
-    //    }
-
-    //     // Send the POST request.
-    //   $.ajax("/api/newclient", {
-    //     type: "POST",
-    //     data: newClient
-    //   }).then(
-    //     function() {
-    //       console.log("created new client in database");
-    //       // Reload the page to get the updated list
-    //       location.reload();
-    //     }
-    //   );
-
-    // }
 
     function findLocalZips() {
 
@@ -111,7 +78,7 @@ $("#submit-info").on("click", function(event) {
         var userRadius = sessionStorage.getItem("radius");
         console.log(userZip);
         var queryURL = "https://www.zipcodeapi.com/rest/"+ZIPAPIKEY+"/radius.json/"+userZip+"/" + userRadius + "/miles?minimal"
-        // var queryURL = "https://www.zipcodeapi.com/rest/"+ZIPAPIKEY+"/radius.json/"+userZip+"/3000/miles?minimal"
+        
         console.log(queryURL);
         $.ajax({
             url: queryURL,
@@ -125,6 +92,7 @@ $("#submit-info").on("click", function(event) {
             type: "POST",
             data: {"zips":radiusZipArray}
           }).then(function(res) {
+          
             $("#results").show();
             console.log(res);
             var hospitalAddress = [];
@@ -134,10 +102,10 @@ $("#submit-info").on("click", function(event) {
             getDistance(hospitalAddress[i], i);
     
             };
-
+            
             let hospitalIds =[];
             for (var i = 0; i <res.length; i++){
-                $('#results','#cost','#address').empty();
+               
 
                 $("#results"+i).append((i+1)+". " + res[i].hospital_name +" ");
                 $("#cost"+i).append("Cost of Procedure:  $" + res[i].cost + " ");
