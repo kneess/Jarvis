@@ -129,11 +129,21 @@ $("#submit-info").on("click", function(event) {
             for (var i = 0; i < 5; i++){
             hospitalAddress[i] = res[i].address + "+" + res[i].city + "+" + res[i].state + "+" + res[i].zip_code;
             console.log(hospitalAddress[i]);
-
+            getDistance(hospitalAddress[i], i);
+    
             };
 
-            for (var i = 0; i<5; i++){
-            getDistance(hospitalAddress[i]);
+            for (var i = 0; i <res.length; i++){
+
+                $("#results"+i).append((i+1)+". " + res[i].hospital_name +" ");
+                $("#results"+i).append("$" + res[i].cost + " ");
+                $("#results"+i).append(res[i].address +" ");
+                $("#results"+i).append(res[i].city +" ");
+                $("#results"+i).append(res[i].state +" ");
+                $("#results"+i).append(res[i].zip_code);
+                
+          
+
             };
 
 
@@ -143,7 +153,7 @@ $("#submit-info").on("click", function(event) {
 
     var MQaddress = sessionStorage.getItem("fulladdress");
     console.log(MQaddress);
-    function getDistance(hospitalAddress) {
+    function getDistance(hospitalAddress, i) {
     
         $.ajaxPrefilter(function(options) {
             if (options.crossDomain && $.support.cors) {
@@ -166,6 +176,11 @@ $("#submit-info").on("click", function(event) {
            console.log(distance);
            var costToDrive = ((distance * .545) * 2).toFixed(2);
            console.log(costToDrive);
+           $("#drive_cost"+i).append("Distance: " + distance + " miles");
+           $("#drive_cost"+i).append(" Cost to drive there: $" + costToDrive);
+
+
+
            
           });
         }
