@@ -1,8 +1,10 @@
 $(function() {
 $("#results").hide();
+$(".jarvisnav").hide()
 
 $("#submit-info").on("click", function(event) {
-    
+    $("#welcome").hide();
+    $(".jarvisnav").show();
         
     event.preventDefault();
 
@@ -96,18 +98,20 @@ $("#submit-info").on("click", function(event) {
             $("#results").show();
             console.log(res);
             let hospitalAddress = [];
+            let hospitalCost = [];
+
             for (let i = 0; i < 6; i++){
+            hospitalCost[i] = parseFloat(res[i].cost);
             hospitalAddress[i] = res[i].address + "+" + res[i].city + "+" + res[i].state + "+" + res[i].zip_code;
             console.log(hospitalAddress[i]);
-            getDistance(hospitalAddress[i], i);
+            getDistance(hospitalAddress[i], i, hospitalCost[i]);
     
             };
             
             let hospitalIds =[];
             for (let i = 0; i <res.length; i++){
                
-
-                $("#results"+i).text((i+1)+". " + res[i].hospital_name);
+                $("#results"+i).text(res[i].hospital_name);
                 $("#cost"+i).text("Cost of Procedure:  $" + res[i].cost);
                 $("#address"+i).text(res[i].address);
                 $("#city"+i).text(res[i].city + ", " + res[i].state + " " + res[i].zip_code);
@@ -125,7 +129,7 @@ $("#submit-info").on("click", function(event) {
 
     let MQaddress = sessionStorage.getItem("fulladdress");
     console.log(MQaddress);
-    function getDistance(hospitalAddress, i) {
+    function getDistance(hospitalAddress, i, hospitalCost) {
     
         $.ajaxPrefilter(function(options) {
             if (options.crossDomain && $.support.cors) {
@@ -152,6 +156,8 @@ $("#submit-info").on("click", function(event) {
            console.log(costToDrive);
            $("#distance"+i).text("Distance: " + distance + " miles");
            $("#drive_cost"+i).text(" Cost to drive: $" + costToDrive);
+           let totalCost = parseFloat(hospitalCost) + parseFloat(costToDrive)
+           $("#totalCost"+i).text("Total Cost: $" + totalCost);
            
           });
         }
