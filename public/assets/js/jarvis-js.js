@@ -2,7 +2,7 @@ $(function() {
 $("#results").hide();
 
 $("#submit-info").on("click", function(event) {
-   
+    
         
     event.preventDefault();
 
@@ -158,4 +158,8 @@ $("#submit-info").on("click", function(event) {
 
 
 });
-  
+
+// var radioValsArr = [];
+// $('input[name=inlineRadioOptions]:checked').each(function(){
+//   radioValsArr.push($(this).val());
+// });
