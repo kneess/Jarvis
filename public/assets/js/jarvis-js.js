@@ -107,10 +107,10 @@ $("#submit-info").on("click", function(event) {
             for (let i = 0; i <res.length; i++){
                
 
-                $("#results"+i).append((i+1)+". " + res[i].hospital_name +" ");
-                $("#cost"+i).append("Cost of Procedure:  $" + res[i].cost + " ");
-                $("#address"+i).append(res[i].address +" ");
-                $("#address"+i).append(res[i].city +" ");
+                $("#results"+i).append((i+1)+". " + res[i].hospital_name);
+                $("#cost"+i).append("Cost of Procedure:  $" + res[i].cost);
+                $("#address"+i).append("Hospital Address: " + res[i].address +" ");
+                $("#address"+i).append(res[i].city +", ");
                 $("#address"+i).append(res[i].state +" ");
                 $("#address"+i).append(res[i].zip_code);
                 hospitalIds.push(res[i].id)
@@ -146,12 +146,14 @@ $("#submit-info").on("click", function(event) {
             method: "GET"
           })
           .then(function(response) {
-           let distance =  JSON.stringify(response.route.distance);
+           let totalDistance =  JSON.stringify(response.route.distance);
+           //rounds the distance to the nearest whole number
+           let distance = Math.ceil(totalDistance);
            console.log(distance);
            let costToDrive = ((distance * .545) * 2).toFixed(2);
            console.log(costToDrive);
-           $("#drive_cost"+i).append("Distance: " + distance + " miles");
-           $("#drive_cost"+i).append(" Cost to drive there: $" + costToDrive);
+           $("#distance"+i).append("Distance: " + distance + " miles");
+           $("#drive_cost"+i).append(" Cost to drive: $" + costToDrive);
            
           });
         }
