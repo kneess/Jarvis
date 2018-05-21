@@ -44,10 +44,10 @@ $("#submit-info").on("click", function(event) {
             }
         });
          
-        var ZIPAPIKEY = "6xsv3It4NIGhyQONSzZtJzG35hXBHQg6JJIqO6B7jnv6S8PlAkadIbi6Pg56RUQ2";
-        var userZip = sessionStorage.getItem("zip");
+        let ZIPAPIKEY = "6xsv3It4NIGhyQONSzZtJzG35hXBHQg6JJIqO6B7jnv6S8PlAkadIbi6Pg56RUQ2";
+        let userZip = sessionStorage.getItem("zip");
         console.log(userZip);
-        var queryURL = "https://www.zipcodeapi.com/rest/"+ZIPAPIKEY+"/radius.json/"+userZip+"/20/miles?minimal"
+        let queryURL = "https://www.zipcodeapi.com/rest/"+ZIPAPIKEY+"/radius.json/"+userZip+"/20/miles?minimal"
         console.log(queryURL);
         $.ajax({
             url: queryURL,
@@ -55,7 +55,7 @@ $("#submit-info").on("click", function(event) {
           }) 
           .then(function(response) {
           console.log('zippy zips', response);
-          var zipArray = response.zip_codes;
+          let zipArray = response.zip_codes;
 
           $.ajax("/api", {
             type: "POST",
@@ -73,11 +73,11 @@ $("#submit-info").on("click", function(event) {
             }
         });
       
-        var ZIPAPIKEY = "6xsv3It4NIGhyQONSzZtJzG35hXBHQg6JJIqO6B7jnv6S8PlAkadIbi6Pg56RUQ2";
-        var userZip = sessionStorage.getItem("zip");
-        var userRadius = sessionStorage.getItem("radius");
+        let ZIPAPIKEY = "6xsv3It4NIGhyQONSzZtJzG35hXBHQg6JJIqO6B7jnv6S8PlAkadIbi6Pg56RUQ2";
+        let userZip = sessionStorage.getItem("zip");
+        let userRadius = sessionStorage.getItem("radius");
         console.log(userZip);
-        var queryURL = "https://www.zipcodeapi.com/rest/"+ZIPAPIKEY+"/radius.json/"+userZip+"/" + userRadius + "/miles?minimal"
+        let queryURL = "https://www.zipcodeapi.com/rest/"+ZIPAPIKEY+"/radius.json/"+userZip+"/" + userRadius + "/miles?minimal"
         
         console.log(queryURL);
         $.ajax({
@@ -86,7 +86,7 @@ $("#submit-info").on("click", function(event) {
           }) 
           .then(function(response) {
           console.log(response);
-          var radiusZipArray = response.zip_codes;
+          let radiusZipArray = response.zip_codes;
 
           $.ajax("/api", {
             type: "POST",
@@ -95,8 +95,8 @@ $("#submit-info").on("click", function(event) {
           
             $("#results").show();
             console.log(res);
-            var hospitalAddress = [];
-            for (var i = 0; i < 6; i++){
+            let hospitalAddress = [];
+            for (let i = 0; i < 6; i++){
             hospitalAddress[i] = res[i].address + "+" + res[i].city + "+" + res[i].state + "+" + res[i].zip_code;
             console.log(hospitalAddress[i]);
             getDistance(hospitalAddress[i], i);
@@ -104,7 +104,7 @@ $("#submit-info").on("click", function(event) {
             };
             
             let hospitalIds =[];
-            for (var i = 0; i <res.length; i++){
+            for (let i = 0; i <res.length; i++){
                
 
                 $("#results"+i).append((i+1)+". " + res[i].hospital_name +" ");
@@ -125,7 +125,7 @@ $("#submit-info").on("click", function(event) {
         });
     }
 
-    var MQaddress = sessionStorage.getItem("fulladdress");
+    let MQaddress = sessionStorage.getItem("fulladdress");
     console.log(MQaddress);
     function getDistance(hospitalAddress, i) {
     
@@ -135,10 +135,10 @@ $("#submit-info").on("click", function(event) {
             }
         });
     
-        var MQAPIKey = "UVs4ACBHVSdUdsBxF6ZcdIv1OSmOsM61";
-        var MQaddress = sessionStorage.getItem("fulladdress");
+        let MQAPIKey = "UVs4ACBHVSdUdsBxF6ZcdIv1OSmOsM61";
+        let MQaddress = sessionStorage.getItem("fulladdress");
         console.log(MQaddress);
-        var queryURL= "http://www.mapquestapi.com/directions/v2/route?key="+MQAPIKey+"&from="+MQaddress+"&to="+hospitalAddress
+        let queryURL= "http://www.mapquestapi.com/directions/v2/route?key="+MQAPIKey+"&from="+MQaddress+"&to="+hospitalAddress
     
         console.log(queryURL);
         $.ajax({
@@ -146,9 +146,9 @@ $("#submit-info").on("click", function(event) {
             method: "GET"
           })
           .then(function(response) {
-           var distance =  JSON.stringify(response.route.distance);
+           let distance =  JSON.stringify(response.route.distance);
            console.log(distance);
-           var costToDrive = ((distance * .545) * 2).toFixed(2);
+           let costToDrive = ((distance * .545) * 2).toFixed(2);
            console.log(costToDrive);
            $("#drive_cost"+i).append("Distance: " + distance + " miles");
            $("#drive_cost"+i).append(" Cost to drive there: $" + costToDrive);
