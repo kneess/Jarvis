@@ -51,7 +51,7 @@ body {
     margin-bottom: 0px;
     height: 350px;
     color: white;
-    background: rgba(35, 81, 104, 0.708);
+    background: none;
 
 }
 #intro{
@@ -74,4 +74,16 @@ body {
     font-family: 'Merriweather', serif;
 }
 
+#navlogo{
+    font-family: 'Racing Sans One', cursive;
+    color: white;
+    font-size: 40pt;
+    text-shadow: black 1pt 1pt 1pt;
+}
 
+.jarvisnav {
+    background: none;
+}
+#navlogout {
+    float: right;
+}

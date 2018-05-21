@@ -1,8 +1,10 @@
 $(function() {
 $("#results").hide();
+$(".jarvisnav").hide()
 
 $("#submit-info").on("click", function(event) {
-    
+    $("#welcome").hide();
+    $(".jarvisnav").show();
         
     event.preventDefault();
 
@@ -109,7 +111,7 @@ $("#submit-info").on("click", function(event) {
             let hospitalIds =[];
             for (let i = 0; i <res.length; i++){
                
-                $("#results"+i).text((i+1)+". " + res[i].hospital_name);
+                $("#results"+i).text(res[i].hospital_name);
                 $("#cost"+i).text("Cost of Procedure:  $" + res[i].cost);
                 $("#address"+i).text(res[i].address);
                 $("#city"+i).text(res[i].city + ", " + res[i].state + " " + res[i].zip_code);
