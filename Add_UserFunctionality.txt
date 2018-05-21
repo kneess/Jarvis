@@ -1,0 +1,16 @@
+OBJECTIVE :Add results choosen to save to user table and then give them the option to call them back
+
+-Add "save" checkboxes to html cards
+-Add data-save attribute as boolean to determine if the hospitals have been saved or not
+
+
+-Add save button to page once the data comes back in the .then()
+
+-Add column to user table to hold a string of ids
+
+-Add "checked/saved" post route to post hospital ids
+
+-Add saved get route to get the field that can
+do a sequel query to use hospital ids saved in column 
+from user table to query hospital rows 
+in hospitals table.
