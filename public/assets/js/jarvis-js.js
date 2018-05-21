@@ -107,12 +107,10 @@ $("#submit-info").on("click", function(event) {
             for (let i = 0; i <res.length; i++){
                
 
-                $("#results"+i).append((i+1)+". " + res[i].hospital_name);
-                $("#cost"+i).append("Cost of Procedure:  $" + res[i].cost);
-                $("#address"+i).append("Hospital Address: " + res[i].address +" ");
-                $("#address"+i).append(res[i].city +", ");
-                $("#address"+i).append(res[i].state +" ");
-                $("#address"+i).append(res[i].zip_code);
+                $("#results"+i).text((i+1)+". " + res[i].hospital_name);
+                $("#cost"+i).text("Cost of Procedure:  $" + res[i].cost);
+                $("#address"+i).text(res[i].address);
+                $("#city"+i).text(res[i].city + ", " + res[i].state + " " + res[i].zip_code);
                 hospitalIds.push(res[i].id)
                 
                 console.log("Hospital Name: " + res[i].hospital_name);
@@ -152,8 +150,8 @@ $("#submit-info").on("click", function(event) {
            console.log(distance);
            let costToDrive = ((distance * .545) * 2).toFixed(2);
            console.log(costToDrive);
-           $("#distance"+i).append("Distance: " + distance + " miles");
-           $("#drive_cost"+i).append(" Cost to drive: $" + costToDrive);
+           $("#distance"+i).text("Distance: " + distance + " miles");
+           $("#drive_cost"+i).text(" Cost to drive: $" + costToDrive);
            
           });
         }
