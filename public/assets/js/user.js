@@ -29,7 +29,7 @@ $(".submit-saved").on("click", function() {
 
 
     $.ajax({
-      url: "/api/:id",
+      url: "/api/id",
       type: 'PUT',
       data: savedHospitals,
       success: function(data) {

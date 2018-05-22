@@ -78,13 +78,13 @@ function cheapestHospitals(dbHospital){
   
 };
 
-app.put("/api/:id", function(req, res) {
+app.put("/api/id", function(req, res) {
   console.log(req.body);
   console.log(req.params.id);
 
   db.user.update(
       {saved_hospitalIds: req.body.saved_hospitalIds.toString()},
-      {where:{id:req.params.id}}
+      {where:{id:req.body.id}}
   ).then((data)=>{
     console.log("The user has saved the hospitals");
       res.json(data);
