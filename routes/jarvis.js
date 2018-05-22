@@ -1,6 +1,6 @@
 var Sequelize = require("sequelize");
-var db = require('../models')
-
+var db = require('../models');
+var Op = Sequelize.Op;
 var authController = require('../controllers/authcontroller.js');
  
 module.exports = function(app, passport) {
@@ -46,7 +46,7 @@ app.post('/signin', passport.authenticate('local-signin', {
 ));
 
 //api routes
-var Op = Sequelize.Op;
+
 app.post("/api", function(req, res) {
   console.log("You hit the router")
   console.log(req.body);
@@ -77,5 +77,22 @@ function cheapestHospitals(dbHospital){
   return topSix;
   
 };
-}
 
+app.put("/api/id", function(req, res) {
+  console.log(req.body);
+  console.log(req.params.id);
+
+  db.user.update(
+      {saved_hospitalIds: req.body.saved_hospitalIds.toString()},
+      {where:{id:req.body.id}}
+  ).then((data)=>{
+    console.log("The user has saved the hospitals");
+      res.json(data);
+
+  })
+ 
+
+});
+
+
+}
