@@ -6,10 +6,10 @@ Motivation: Health care costs can vary widely between providers with little tran
 
 Results: We used a database from healthdata.gov that outlines costs of procedures in hospitals across the country and present those to members in an easy to understand format.
 
-![Jarvis Login Page](/public/assets/images/login.jpg)
+![Jarvis Login Page](/public/assets/images/login.JPG)
 
-![Jarvis Modal](/public/assets/images/modal.jpg)
+![Jarvis Modal](/public/assets/images/modal.JPG)
 
-![Jarvis Results](/public/assets/images/results.jpg)
+![Jarvis Results](/public/assets/images/results.JPG)
 
 This app was created and is maintained by Kourtney Reynolds, Patrick Miles, Anibal Campos, and Becky McClain.
