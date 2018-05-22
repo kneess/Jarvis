@@ -123,7 +123,7 @@ $("#submit-info").on("click", function(event) {
                 $("#cost"+i).text("Cost of Procedure:  $" + res[i].cost);
                 $("#address"+i).text(res[i].address);
                 $("#city"+i).text(res[i].city + ", " + res[i].state + " " + res[i].zip_code);
-                $("#form-check"+i).append(`  <input class="form-check-input" type="checkbox" name="save_hospital" value="${res[i].id}" id="defaultCheck1 style ="padding=left:5px">
+                $("#form-check"+i).html(`  <input class="form-check-input" type="checkbox" name="save_hospital" value="${res[i].id}" id="defaultCheck1 style ="padding=left:5px">
                 <label class="form-check-label" for="defaultCheck1">Save</label>`)
                 hospitalIds.push(res[i].id)
                 
