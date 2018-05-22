@@ -1,34 +1,53 @@
-exports.user = function(req, res) {
-    if(req.user) {
-        $(function(req.user.id) {
-		$(".submit-hospital").on("click", function(event) {//TODO Need button added for user to click in html to trigger a save on all the items checked
-		  var id = req.user.id;
-		  var savedHospitals =[];
-		  $("input[name=saved-hospitals]:checked").each(function(){
-			savedHospitals.push($(this).val());//TODO Need to add the data-id to the hospital checkboxes
-			});
-	  
-		  var newSavedHospitals = {
-			savedHospitals: savedHospitals
-		  };
-	  
-		  // Send the PUT request.//put requires that I send and object
-		  $.ajax("/api/" + id, {
-			type: "PUT",
-			data: savedHospitals
-		  }).then(
-			function() {
-			  console.log("The list of hospitals IDs saved are", savedHospitals);
-			  // Reload the page to get the updated list
-			  location.reload();
-			}
-		  );
-		});
-    } else {
-		alert("Sorry you are not signed in");
-		res.render('signin');
+
+$(document).ready(function(){
+
+
+  $("body").on("click",()=>{
+    console.log("ANYTHING ELSE");
+  })
+
+  let checkedValsArr = [];
+  function checkedVals(){
+      $('input[name=save_hospital]:checked').each(function(){
+        checkedValsArr.push($(this).val());
+      });   
+  }
+
+
+$(".submit-saved").on("click", function() {
+      // event.preventDefault();
+    console.log("ANYTHING");
+    checkedVals();
+    console.log(checkedValsArr);
+
+    var savedHospitals = {
+      id: 1,//TODO get this from anibal later
+      saved_hospitalIds: checkedValsArr,
+      
     }
+    console.log(savedHospitals);
 
-};//Need to write the Sequelize statement to query the users table for the user id.
 
-var exports = module.exports = {}
+    $.ajax({
+      url: "/api/id",
+      type: 'PUT',
+      data: savedHospitals,
+      success: function(data) {
+        console.log("ANYTHING BUT AN ALERT");
+        alert('Load was performed.');
+          //     // If there is a user in the table console log the data
+          //     if (data) {
+          //       console.log(data);
+              
+          //     }
+          //     // If there is not a match tell the user they can't save anything 
+          //     else {
+          //       alert("Sorry you are not able to save");
+          //     }
+      }
+    });
+
+  });
+
+    
+  });
