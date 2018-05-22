@@ -80,7 +80,7 @@ function cheapestHospitals(dbHospital){
 
 app.put("/api/id", function(req, res) {
   console.log(req.body);
-  console.log(req.params.id);
+  
 
   db.user.update(
       {saved_hospitalIds: req.body.saved_hospitalIds.toString()},
