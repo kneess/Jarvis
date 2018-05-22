@@ -8,6 +8,7 @@ $(document).ready(function(){
 
   let checkedValsArr = [];
   function checkedVals(){
+      checkedValsArr =[];
       $('input[name=save_hospital]:checked').each(function(){
         checkedValsArr.push($(this).val());
       });   
