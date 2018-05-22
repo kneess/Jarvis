@@ -8,7 +8,7 @@ $(document).ready(function(){
 
   let checkedValsArr = [];
   function checkedVals(){
-      checkedValsArr =[];
+    checkedValsArr = [];
       $('input[name=save_hospital]:checked').each(function(){
         checkedValsArr.push($(this).val());
       });   
@@ -35,7 +35,7 @@ $(".submit-saved").on("click", function() {
       data: savedHospitals,
       success: function(res) {
         console.log("ANYTHING BUT AN ALERT");
-        alert('Load was performed.' + res);
+        alert('Your hospitals have been saved for later.');
           //     // If there is a user in the table console log the data
           //     if (data) {
           //       console.log(data);
