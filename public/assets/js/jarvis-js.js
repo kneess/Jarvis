@@ -64,6 +64,11 @@ $("#submit-info").on("click", function(event) {
             data: {"zips":zipArray}
           }).then(function(res) {
             console.log(res);
+
+            $("#results0").text(res[0].hospital_name);
+            $("#cost0").text("Cost of Procedure:  $" + res[0].cost);
+            $("#address0").text(res[0].address);
+            $("#city0").text(res[0].city + ", " + res[0].state + " " + res[0].zip_code);
           })
         });
     }
@@ -103,7 +108,7 @@ $("#submit-info").on("click", function(event) {
             let hospitalAddress = [];
             let hospitalCost = [];
 
-            for (let i = 0; i < 6; i++){
+            for (let i = 1; i < 6; i++){
             hospitalCost[i] = parseFloat(res[i].cost);
             hospitalAddress[i] = res[i].address + "+" + res[i].city + "+" + res[i].state + "+" + res[i].zip_code;
             console.log(hospitalAddress[i]);
@@ -112,7 +117,7 @@ $("#submit-info").on("click", function(event) {
             };
             
             let hospitalIds =[];
-            for (let i = 0; i <res.length; i++){
+            for (let i = 1; i <res.length; i++){
                
                 $("#results"+i).text(res[i].hospital_name);
                 $("#cost"+i).text("Cost of Procedure:  $" + res[i].cost);
