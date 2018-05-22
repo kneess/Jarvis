@@ -114,6 +114,32 @@ body {
     margin: 0;
 }
 
+#introresults {
+
+    font-family: 'Merriweather', serif;
+    color: whitesmoke;
+    text-shadow:
+    -0.25px -0.25px 0 #000,
+    0.25px 0.25px 0 #000,
+    0.25px 0.25px 0 #000,
+    0.25px 0.25px 0 #000;
+ 
+}
+
+.card-distance {
+    font-family: 'Merriweather Sans', sans-serif;
+    background-color: white;
+}
+
+.card-local {
+
+    background-color: lightskyblue;
+}
+
+#localoption {
+    font-family: 'Merriweather Sans', sans-serif;
+
+}
 .card-header {
     font-family: 'Merriweather', serif;
 }
