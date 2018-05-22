@@ -33,9 +33,9 @@ $(".submit-saved").on("click", function() {
       url: "/api/id",
       type: 'PUT',
       data: savedHospitals,
-      success: function(data) {
+      success: function(res) {
         console.log("ANYTHING BUT AN ALERT");
-        alert('Load was performed.');
+        alert('Load was performed.' + res);
           //     // If there is a user in the table console log the data
           //     if (data) {
           //       console.log(data);
