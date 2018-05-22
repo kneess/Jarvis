@@ -96,6 +96,9 @@ $("#submit-info").on("click", function(event) {
           }).then(function(res) {
           
             $("#results").show();
+            $(".save-btn").on("click",()=>{
+                console.log("The user would like to save their options");
+            })
             console.log(res);
             let hospitalAddress = [];
             let hospitalCost = [];
@@ -115,10 +118,11 @@ $("#submit-info").on("click", function(event) {
                 $("#cost"+i).text("Cost of Procedure:  $" + res[i].cost);
                 $("#address"+i).text(res[i].address);
                 $("#city"+i).text(res[i].city + ", " + res[i].state + " " + res[i].zip_code);
+                $("#form-check"+i).append(`  <input class="form-check-input" type="checkbox" name="save_hospital" value="${res[i].id}" id="defaultCheck1 style ="padding=left:5px">
+                <label class="form-check-label" for="defaultCheck1">Save</label>`)
                 hospitalIds.push(res[i].id)
                 
-                console.log("Hospital Name: " + res[i].hospital_name);
-                console.log("Hospital Id: " + res[i].id)
+
             };
             console.log("The total hostpital ids are: " + hospitalIds );
            
@@ -164,8 +168,3 @@ $("#submit-info").on("click", function(event) {
 
 
 });
-
-// var radioValsArr = [];
-// $('input[name=inlineRadioOptions]:checked').each(function(){
-//   radioValsArr.push($(this).val());
-// });
