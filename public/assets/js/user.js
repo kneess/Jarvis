@@ -33,7 +33,7 @@ $(".submit-saved").on("click", function() {
       url: "/api/id",
       type: 'PUT',
       data: savedHospitals,
-      success: function(data) {
+      success: function(res) {
         console.log("ANYTHING BUT AN ALERT");
         alert('Your hospitals have been saved for later.');
           //     // If there is a user in the table console log the data
