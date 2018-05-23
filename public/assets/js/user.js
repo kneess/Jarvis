@@ -23,7 +23,7 @@ $(".submit-saved").on("click", function() {
 
     var savedHospitals = {
       id: 1,//TODO get this from anibal later
-      saved_hospitalIds: checkedValsArr,
+      saved_hospitalIds: checkedValsArr.toString(),
       
     }
     console.log(savedHospitals);
