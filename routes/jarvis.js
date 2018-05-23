@@ -83,7 +83,7 @@ app.put("/api/id", function(req, res) {
   
 
   db.user.update(
-      {saved_hospitalIds: req.body.saved_hospitalIds.toString()},
+      {saved_hospitalIds: req.body.saved_hospitalIds},
       {where:{id:req.body.id}}
   ).then((data)=>{
     console.log("The user has saved the hospitals");
