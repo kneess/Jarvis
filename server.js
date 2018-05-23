@@ -14,6 +14,18 @@ var session    = require('express-session')
 
 var PORT = process.env.PORT || 8080;
 
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: "",
+    database: 'jarvis_db'
+    
+  });
+};
+
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true, parameterLimit: 100000 }));
 
